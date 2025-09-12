@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rawnaqi — Beauty & Wellness Bookings</title>
+  <meta name="description" content="Rawnaqi connects ladies with beauty, massage, and women health centers in KSA. Book, manage, and pay for services easily.">
+  <link rel="icon" type="image/png" href="assets/1.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary: #3E125B;
+      --primary-700:#2f0e45;
+      --secondary:#E2B555;
+      --white:#fff;
+      --shadow:0 10px 30px rgba(0,0,0,.15);
+    }
+    * { box-sizing:border-box; }
+    html,body { margin:0; padding:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body.rtl { direction: rtl; font-family: Cairo, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display:block; height:auto; }
+    .container { width:min(1120px,92%); margin-inline:auto; }
+
+    /* Nav */
+    .nav { position: sticky; top:0; z-index:50; background:rgba(255,255,255,.85); backdrop-filter: blur(10px); border-bottom:1px solid #eee; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:16px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand img.logo { width:44px; height:44px; object-fit:contain; border-radius:8px; background:#fff; padding:4px; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+    .brand .name { font-weight:800; font-size:1.1rem; color:var(--primary); letter-spacing:.3px; }
+    .menu { display:flex; align-items:center; gap:22px; }
+    .menu a { font-weight:600; color:#3b3b3b; }
+    .cta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 16px; border-radius:999px; font-weight:700; box-shadow:var(--shadow); transition:transform .15s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background:var(--primary); color:var(--white); }
+    .btn-outline { border:2px solid var(--primary); color:var(--primary); background:transparent; }
+
+    /* Dropdown */
+    .dropdown { position:relative; }
+    .dropdown-toggle::after { content:"▾"; margin-left:6px; font-size:.8em; }
+    body.rtl .dropdown-toggle::after { margin-left:0; margin-right:6px; }
+    .dropdown-menu { position:absolute; right:0; top:120%; background:#fff; border:1px solid #eee; border-radius:12px; box-shadow:var(--shadow); padding:10px; min-width:220px; display:none; }
+    body.rtl .dropdown-menu { left:0; right:auto; }
+    .dropdown.open .dropdown-menu { display:block; }
+    .dropdown-menu a { display:block; padding:10px 12px; border-radius:8px; }
+    .dropdown-menu a:hover { background:#f7f4ff; }
+
+    /* Language switch */
+    .lang-switch { display:flex; align-items:center; gap:8px; }
+    .lang-switch button { border:0; background:transparent; font-weight:800; padding:6px 8px; border-radius:8px; cursor:pointer; color:#333; }
+    .lang-switch button.active { background:#f1e9ff; color:var(--primary); }
+
+    /* Hero */
+    .hero { position:relative; background:url('assets/hero-bg.svg') center/cover no-repeat; color:#fff; }
+    .hero .container { display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:40px; padding:80px 0; }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3rem); line-height:1.1; margin:0 0 14px; font-weight:900; }
+    .hero p { font-size: clamp(1rem, 2vw, 1.125rem); color:#efe7ff; margin:0 0 22px; }
+    .badges { display:flex; gap:14px; flex-wrap:wrap; }
+    .store-badge { display:inline-flex; align-items:center; gap:10px; border-radius:12px; padding:10px 14px; background:#000; color:#fff; font-weight:700; border:1px solid rgba(255,255,255,.15); }
+    .store-badge svg { width:22px; height:22px; }
+
+    /* Features */
+    .features { padding:56px 0; background:#faf7ff; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .card { background:#fff; border:1px solid #eee; border-radius:18px; padding:20px; box-shadow:0 6px 20px rgba(0,0,0,.06); }
+    .card h3 { margin:0 0 8px; color:var(--primary); }
+    .card p { margin:0; color:#494949; }
+
+    /* Provider */
+    .provider-cta { padding:64px 0; }
+    .cta-box { display:flex; align-items:center; justify-content:space-between; gap:20px; background: linear-gradient(135deg, var(--primary), var(--primary-700)); color:#fff; border-radius:20px; padding:28px; }
+    .cta-box h2 { margin:0 0 8px; }
+
+    /* Footer */
+    footer { padding:40px 0; background:#0f0718; color:#c7c4d6; }
+    footer a { color:#eadaff; }
+
+    /* Responsive */
+    .mobile-toggle { display:none; background:transparent; border:0; font-size:26px; }
+    @media (max-width:920px) {
+      .hero .container { grid-template-columns:1fr; padding:56px 0; }
+      .grid { grid-template-columns:1fr; }
+      .mobile-toggle { display:inline-block; }
+      .menu, .cta { display:none; }
+      .nav.open .menu, .nav.open .cta { display:flex; flex-direction:column; align-items:flex-start; padding-bottom:14px; }
+      .nav-inner { flex-wrap:wrap; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <img class="logo" src="assets/logo.png" alt="Rawnaqi logo">
+        <span class="name" data-i18n="brand">Rawnaqi</span>
+      </a>
+      <button class="mobile-toggle" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+      <nav class="menu" aria-label="Main menu">
+        <a href="#features" data-i18n="nav_features">Features</a>
+        <a href="#downloads" data-i18n="nav_download">Download</a>
+        <div class="dropdown" id="providerDropdown">
+          <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)" data-i18n="nav_providers">For Providers</a>
+          <div class="dropdown-menu" role="menu" aria-label="Service provider">
+            <a href="#provider" role="menuitem" data-i18n="nav_provider_overview">Overview</a>
+            <a href="http://daily.rawnaqiapp.com/admin/service-provider/register" role="menuitem" data-i18n="nav_provider_register">Register as Provider</a>
+            <a href="http://daily.rawnaqiapp.com/admin/login" role="menuitem" data-i18n="nav_provider_login">Provider Login</a>
+          </div>
+        </div>
+      </nav>
+      <div class="cta">
+        <a class="btn btn-outline" href="#downloads" data-i18n="cta_et_app">Get the App</a>
+        <a class="btn btn-primary" href="http://daily.rawnaqiapp.com/admin/service-provider/register" data-i18n="cta_become_provider">Become a Provider</a>
+      </div>
+      <div class="lang-switch" aria-label="Language switcher">
+        <button id="btn-en" onclick="setLang('en')" class="active">EN</button>
+        <button id="btn-ar" onclick="setLang('ar')">العربية</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div>
+        <h1 data-i18n="hero_title">Beauty & Wellness bookings—made effortless.</h1>
+        <p data-i18n="hero_sub">Rawnaqi connects ladies across KSA with trusted beauty, massage, and women’s health centers—so you can browse, book, manage, and pay in minutes.</p>
+        <div class="badges" id="downloads">
+          <a class="store-badge" href="https://apps.apple.com/">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.665 16.27c-.327.76-.717 1.45-1.17 2.07-.617.84-1.124 1.41-1.52 1.71-.61.56-1.264.85-1.96.87-.5 0-1.104-.143-1.812-.43-.708-.286-1.36-.43-1.958-.43-.624 0-1.293.144-2.006.43-.714.287-1.29.435-1.73.446-.676.03-1.35-.27-2.02-.9-.43-.37-.956-.97-1.58-1.8-.676-.9-1.23-1.94-1.66-3.12-.466-1.29-.7-2.54-.7-3.76 0-1.385.3-2.579.9-3.58.47-.79 1.095-1.423 1.873-1.9A4.54 4.54 0 0 1 6.9 5.15c.56-.02 1.29.164 2.19.553.9.39 1.48.585 1.74.585.2 0 .82-.197 1.86-.592 1-.37 1.84-.523 2.52-.46 1.86.15 3.26.88 4.2 2.2-1.66 1.01-2.49 2.44-2.5 4.29.01 1.43.55 2.62 1.62 3.54.48.41 1.02.72 1.62.94-.13.37-.29.75-.44 1.15ZM15.7 1.9c0 .99-.36 1.9-1.07 2.73-.86 1.01-1.9 1.6-3.03 1.5-.02-.12-.03-.24-.03-.37 0-.95.41-1.98 1.15-2.8.37-.43.84-.79 1.41-1.07.58-.29 1.14-.45 1.66-.5.02.17.03.35.03.51Z"/></svg>
+            <span data-i18n="badge_app_store">App Store</span>
+          </a>
+          <a class="store-badge" href="https://play.google.com/store">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2 14 12 3.6 21.8c-.37-.2-.6-.61-.6-1.14V3.34c0-.53.23-.94.6-1.14Zm12.86 9.14L6.1 2.4l9.4 9.4 1-1.06-1.04-1.4 4.58 2.64c.82.47.82 1.58 0 2.05l-4.6 2.65 1.06-1.46 1-1.06-1.06-1.06Z"/></svg>
+            <span data-i18n="badge_google_play">Google Play</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div style="background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); padding:22px; border-radius:20px;">
+          <img src="assets/1.png" alt="Rawnaqi logo large" style="border-radius:14px; background:#fff; padding:14px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <div class="grid">
+        <div class="card">
+          <h3 data-i18n="f1_title">Discover & compare</h3>
+          <p data-i18n="f1_text">Browse a wide range of centers and specialists. See ratings, prices, and availability in one place.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="f2_title">Book & manage</h3>
+          <p data-i18n="f2_text">Reserve services in seconds and manage rescheduling or cancellations right from the app.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="f3_title">Secure payments</h3>
+          <p data-i18n="f3_text">Pay safely through trusted gateways. Your data is encrypted and protected.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="provider-cta" id="provider">
+    <div class="container">
+      <div class="cta-box">
+        <div>
+          <h2 data-i18n="prov_title">Are you a beauty or health center?</h2>
+          <p data-i18n="prov_text">Join Rawnaqi to reach more customers, manage appointments, and grow your business.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap: wrap;">          <a class="btn btn-primary" href="http://daily.rawnaqiapp.com/provider/register" data-i18n="prov_register">Register as Provider</a>
+          <a class="btn btn-outline" href="http://daily.rawnaqiapp.com/admin/login" data-i18n="prov_login">Provider Login</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <img src="assets/logo.png" alt="Rawnaqi small logo" style="width:32px; height:32px; border-radius:6px; background:#fff; padding:3px;">
+        <strong data-i18n="brand">Rawnaqi</strong>
+      </div>
+      <div style="display:flex; gap:16px;">
+        <a href="#features" data-i18n="nav_features">Features</a>
+        <a href="#downloads" data-i18n="nav_download">App</a>
+        <a href="#provider" data-i18n="nav_providers_short">Providers</a>
+        <a href="#" data-i18n="nav_privacy">Privacy</a>
+      </div>
+      <small>&copy; <span id="year"></span> <span data-i18n="brand">Rawnaqi</span>. <span data-i18n="rights">All rights reserved.</span></small>
+    </div>
+  </footer>
+
+  <script>
+    // i18n dictionary
+    const dict = {
+      en: {
+        brand: "Rawnaqi",
+        nav_features: "Features",
+        nav_download: "Download",
+        nav_providers: "For Providers",
+        nav_providers_short: "Providers",
+        nav_provider_overview: "Overview",
+        nav_provider_register: "Register as Provider",
+        nav_provider_login: "Provider Login",
+        nav_privacy: "Privacy",
+        cta_get_app: "Get the App",
+        cta_become_provider: "Become a Provider",
+        hero_title: "Beauty & Wellness bookings—made effortless.",
+        hero_sub: "Rawnaqi connects ladies across KSA with trusted beauty, massage, and women’s health centers—so you can browse, book, manage, and pay in minutes.",
+        badge_app_store: "App Store",
+        badge_google_play: "Google Play",
+        f1_title: "Discover & compare",
+        f1_text: "Browse a wide range of centers and specialists. See ratings, prices, and availability in one place.",
+        f2_title: "Book & manage",
+        f2_text: "Reserve services in seconds and manage rescheduling or cancellations right from the app.",
+        f3_title: "Secure payments",
+        f3_text: "Pay safely through trusted gateways. Your data is encrypted and protected.",
+        prov_title: "Are you a beauty or health center?",
+        prov_text: "Join Rawnaqi to reach more customers, manage appointments, and grow your business.",
+        prov_register: "Register as Provider",
+        prov_login: "Provider Login",
+        rights: "All rights reserved."
+      },
+      ar: {
+        brand: "رونقي",
+        nav_features: "المزايا",
+        nav_download: "التنزيل",
+        nav_providers: "لمقدمي الخدمات",
+        nav_providers_short: "المزوِّدون",
+        nav_provider_overview: "نظرة عامة",
+        nav_provider_register: "سجّل كمقدم خدمة",
+        nav_provider_login: "تسجيل دخول مقدم الخدمة",
+        nav_privacy: "الخصوصية",
+        cta_get_app: "حمِّل التطبيق",
+        cta_become_provider: "انضم كمقدم خدمة",
+        hero_title: "حجوزات التجميل والصحة — بسهولة ويسر.",
+        hero_sub: "يربط رونقي السيدات في المملكة العربية السعودية بمراكز التجميل والمساج والعناية الصحية الموثوقة — لتصفح العروض وحجزها وإدارتها والدفع خلال دقائق.",
+        badge_app_store: "متجر التطبيقات",
+        badge_google_play: "جوجل بلاي",
+        f1_title: "اكتشفي وقارني",
+        f1_text: "تصفحي مجموعة واسعة من المراكز والمتخصصات مع التقييمات والأسعار والتوفر في مكان واحد.",
+        f2_title: "احجزي وأديري",
+        f2_text: "احجزي الخدمات بسرعة وأديري إعادة الجدولة أو الإلغاء مباشرة من التطبيق.",
+        f3_title: "مدفوعات آمنة",
+        f3_text: "ادفعي بأمان عبر بوابات موثوقة مع حماية وتشفير لبياناتك.",
+        prov_title: "هل أنتِ مركز تجميل أو عناية صحية؟",
+        prov_text: "انضمي إلى رونقي للوصول إلى مزيد من العميلات، وإدارة المواعيد، وتنمية أعمالك.",
+        prov_register: "سجّل كمقدم خدمة",
+        prov_login: "تسجيل دخول مقدم الخدمة",
+        rights: "جميع الحقوق محفوظة."
+      }
+    };
+
+    function applyLang(lang) {
+      const els = document.querySelectorAll("[data-i18n]");
+      els.forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if(dict[lang][key]) el.textContent = dict[lang][key];
+      });
+      // toggle direction and html lang
+      document.documentElement.lang = lang === "ar" ? "ar" : "en";
+      document.body.classList.toggle("rtl", lang === "ar");
+      // active state
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+      document.getElementById("btn-ar").classList.toggle("active", lang === "ar");
+      localStorage.setItem("rawnaqi_lang", lang);
+    }
+
+    function setLang(lang) { applyLang(lang); }
+
+    // Dropdown logic
+    function toggleDropdown(e) {
+      e.preventDefault();
+      document.getElementById('providerDropdown').classList.toggle('open');
+    }
+    document.addEventListener('click', function(e){
+      const dd = document.getElementById('providerDropdown');
+      if(!dd.contains(e.target)) dd.classList.remove('open');
+    });
+
+    // Init
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const saved = localStorage.getItem("rawnaqi_lang") || "en";
+    applyLang(saved);
+  </script>
+</body>
+</html>
