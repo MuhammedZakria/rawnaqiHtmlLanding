@@ -73,10 +73,25 @@
     .provider-cta { padding:64px 0; }
     .cta-box { display:flex; align-items:center; justify-content:space-between; gap:20px; background: linear-gradient(135deg, var(--primary), var(--primary-700)); color:#fff; border-radius:20px; padding:28px; }
     .cta-box h2 { margin:0 0 8px; }
+    .cta-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .cta-box .btn { white-space:nowrap; }
+    .cta-box .btn-primary { background:#fff; color:var(--primary); }
+    .cta-box .btn-outline { border-color:#fff; color:#fff; }
 
     /* Footer */
-    footer { padding:40px 0; background:#0f0718; color:#c7c4d6; }
+    footer { padding:48px 0 28px; background:#0f0718; color:#c7c4d6; }
     footer a { color:#eadaff; }
+    .footer-inner { display:flex; flex-direction:column; gap:22px; }
+    .footer-top { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
+    .footer-brand { display:flex; align-items:center; gap:10px; }
+    .footer-brand img { width:32px; height:32px; border-radius:6px; background:#fff; padding:3px; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:16px; }
+    .footer-legal { border-top:1px solid rgba(255,255,255,.1); padding-top:18px; display:flex; flex-direction:column; gap:6px; }
+    .company-en, .company-ar { margin:0; font-weight:700; text-align:left; }
+    .company-en { color:#fff; letter-spacing:.2px; }
+    .company-ar { color:#eadaff; font-family: Cairo, system-ui, sans-serif; direction:rtl; unicode-bidi:isolate; }
+    body.rtl .company-en, body.rtl .company-ar { text-align:right; }
+    .footer-copy { color:#9b97ab; }
 
     /* Responsive */
     .mobile-toggle { display:none; background:transparent; border:0; font-size:26px; }
@@ -113,7 +128,7 @@
         </div>
       </nav>
       <div class="cta">
-        <a class="btn btn-outline" href="#downloads" data-i18n="cta_et_app">Get the App</a>
+        <a class="btn btn-outline" href="#downloads" data-i18n="cta_get_app">Get the App</a>
         <a class="btn btn-primary" href="http://dev.rawnaqiapp.com/admin/service-provider/register" data-i18n="cta_become_provider">Become a Provider</a>
       </div>
       <div class="lang-switch" aria-label="Language switcher">
@@ -173,7 +188,8 @@
           <h2 data-i18n="prov_title">Are you a beauty or health center?</h2>
           <p data-i18n="prov_text">Join Rawnaqi to reach more customers, manage appointments, and grow your business.</p>
         </div>
-        <div style="display:flex; gap:10px; flex-wrap: wrap;">          <a class="btn btn-primary" href="http://dev.rawnaqiapp.com/provider/register" data-i18n="prov_register">Register as Provider</a>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="http://dev.rawnaqiapp.com/provider/register" data-i18n="prov_register">Register as Provider</a>
           <a class="btn btn-outline" href="http://dev.rawnaqiapp.com/admin/login" data-i18n="prov_login">Provider Login</a>
         </div>
       </div>
@@ -181,18 +197,24 @@
   </section>
 
   <footer>
-    <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px;">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <img src="assets/logo.png" alt="Rawnaqi small logo" style="width:32px; height:32px; border-radius:6px; background:#fff; padding:3px;">
-        <strong data-i18n="brand">Rawnaqi</strong>
+    <div class="container footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="Rawnaqi small logo">
+          <strong data-i18n="brand">Rawnaqi</strong>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="#features" data-i18n="nav_features">Features</a>
+          <a href="#downloads" data-i18n="nav_download">App</a>
+          <a href="#provider" data-i18n="nav_providers_short">Providers</a>
+          <a href="rawnaqi_privacy_policy_bilingual_html.html" data-i18n="nav_privacy">Privacy</a>
+        </nav>
       </div>
-      <div style="display:flex; gap:16px;">
-        <a href="#features" data-i18n="nav_features">Features</a>
-        <a href="#downloads" data-i18n="nav_download">App</a>
-        <a href="#provider" data-i18n="nav_providers_short">Providers</a>
-        <a href="rawnaqi_privacy_policy_bilingual_html.html" data-i18n="nav_privacy">Privacy</a>
+      <div class="footer-legal">
+        <p class="company-en" lang="en" dir="ltr">AlYassmin AlMuzhir Establishment For Trading</p>
+        <p class="company-ar" lang="ar" dir="rtl">مؤسسة الياسمين المزهر للتجارة</p>
+        <small class="footer-copy">&copy; <span id="year"></span> <span data-i18n="brand">Rawnaqi</span> · <span data-i18n="rights">All rights reserved.</span></small>
       </div>
-      <small>&copy; <span id="year"></span> <span data-i18n="brand">Rawnaqi</span> - <span data-i18n="rights">All rights reserved.</span></small>
     </div>
   </footer>
 
@@ -226,7 +248,7 @@
         prov_text: "Join Rawnaqi to reach more customers, manage appointments, and grow your business.",
         prov_register: "Register as Provider",
         prov_login: "Provider Login",
-        rights: "Yasmin Mazhar Trading Company | All rights reserved."
+        rights: "All rights reserved."
       },
       ar: {
         brand: "رونقي",
@@ -255,7 +277,7 @@
         prov_text: "انضمي إلى رونقي للوصول إلى مزيد من العميلات، وإدارة المواعيد، وتنمية أعمالك.",
         prov_register: "سجّل كمقدم خدمة",
         prov_login: "تسجيل دخول مقدم الخدمة",
-        rights: "مؤسسة الياسمين المزهر للتجارة | جميع الحقوق محفوظة."
+        rights: "جميع الحقوق محفوظة."
       }
     };
 
