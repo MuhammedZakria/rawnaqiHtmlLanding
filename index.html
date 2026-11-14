@@ -85,12 +85,11 @@
     .section-head { max-width:36rem; margin:0 0 32px; }
     .section-head h2 { margin:0; font-size:clamp(1.6rem, 2.4vw, 2.1rem); line-height:1.25; letter-spacing:-.02em; color:var(--primary); }
     body.rtl .section-head h2 { letter-spacing:0; }
-    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-    .card { background:#fff; border:1px solid var(--line); border-radius:20px; padding:24px 22px 26px; box-shadow:0 1px 0 rgba(62,18,91,.03); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:20px; padding:28px 26px 30px; box-shadow:0 1px 0 rgba(62,18,91,.03); display:flex; flex-direction:column; }
     .card:hover { border-color:#e4d7ee; box-shadow:0 14px 30px rgba(62,18,91,.07); }
-    .card-index { display:inline-flex; margin-bottom:16px; color:var(--secondary); font-weight:700; font-size:.8rem; letter-spacing:.08em; }
-    .card h3 { margin:0 0 8px; color:var(--primary); font-size:1.15rem; }
-    .card p { margin:0; color:var(--muted); line-height:1.65; }
+    .card h3 { margin:0 0 12px; color:var(--primary); font-size:1.35rem; line-height:1.35; }
+    .card p { margin:0; color:var(--muted); font-size:1.05rem; line-height:1.75; }
 
     /* Provider */
     .provider-cta { padding:28px 0 88px; background:#faf7fc; }
@@ -210,17 +209,14 @@
       </header>
       <div class="grid">
         <div class="card">
-          <span class="card-index">01</span>
           <h3 data-i18n="f1_title">Discover & compare</h3>
           <p data-i18n="f1_text">Browse a wide range of centers and specialists. See ratings, prices, and availability in one place.</p>
         </div>
         <div class="card">
-          <span class="card-index">02</span>
           <h3 data-i18n="f2_title">Book & manage</h3>
           <p data-i18n="f2_text">Reserve services in seconds and manage rescheduling or cancellations right from the app.</p>
         </div>
         <div class="card">
-          <span class="card-index">03</span>
           <h3 data-i18n="f3_title">Secure payments</h3>
           <p data-i18n="f3_text">Pay safely through trusted gateways. Your data is encrypted and protected.</p>
         </div>
@@ -258,7 +254,7 @@
         </nav>
       </div>
       <div class="footer-legal">
-        <p class="company-en" lang="en" dir="ltr">AlYassmin AlMuzhir Establishment For Trading</p>
+        <p class="company-en" lang="en" dir="ltr">AlYasmin AlMuzhir Establishment For Trading</p>
         <p class="company-ar" lang="ar" dir="rtl">مؤسسة الياسمين المزهر للتجارة</p>
         <small class="footer-copy">&copy; <span id="year"></span> <span data-i18n="brand">Rawnaqi</span> · <span data-i18n="rights">All rights reserved.</span></small>
       </div>
